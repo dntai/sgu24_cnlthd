@@ -1,0 +1,30 @@
+version: "3"
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: "vndg/cs-mysqldb"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+    expose:
+      - "${MYSQLDB_PORT}"
+    ports:
+      - "${MYSQLDB_PORT}:${MYSQLDB_PORT}"
+    build:
+      context: .
+      dockerfile: ./deploys/dockers/mysqldb/Dockerfile
+
+  mssqldb:
+    container_name: mssqldb
+    image: "vndg/cs-mssqldb"
+    restart: always
+    expose:
+      - "${MSSQLDB_PORT}"
+    ports:
+      - "${MSSQLDB_PORT}:${MSSQLDB_PORT}"
+    build:
+      context: .
+      dockerfile: ./deploys/dockers/mssqldb/Dockerfile
+
+volumes:
+  shareData:
